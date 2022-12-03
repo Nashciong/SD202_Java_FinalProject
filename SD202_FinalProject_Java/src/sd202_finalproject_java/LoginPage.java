@@ -4,26 +4,30 @@
  */
 package sd202_finalproject_java;
 
-//import java.awt.geom.RoundRectangle2D;
-
-import java.awt.Shape;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author Student.admin
+ * @author Student.Admin
  */
 public class LoginPage extends javax.swing.JFrame {
 
+    Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
+
     /**
-     * Creates new form LoginPage
+     * Creates new form Login
      */
-    
-    
     public LoginPage() {
-//        setUndecoorated(true);
         initComponents();
-//        setShape(new RoundRectangle2D.Double(0,0,getWidth(),getHeight(), 50, 80));
     }
 
     /**
@@ -36,46 +40,125 @@ public class LoginPage extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jUser = new javax.swing.JTextField();
+        jPass = new javax.swing.JPasswordField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(180, 147, 39));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setTitle("Login!");
 
-        jPanel1.setBackground(new java.awt.Color(180, 147, 39));
-        jPanel1.setNextFocusableComponent(jPanel1);
+        jPanel1.setBackground(new java.awt.Color(179, 147, 39));
+        jPanel1.setPreferredSize(new java.awt.Dimension(400, 300));
+        jPanel1.setLayout(null);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 349, Short.MAX_VALUE)
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel14.setText("LOGO HERE!");
+        jPanel1.add(jLabel14);
+        jLabel14.setBounds(20, 10, 90, 41);
+
+        jLabel8.setFont(new java.awt.Font("Arial Narrow", 1, 16)); // NOI18N
+        jLabel8.setText("Password");
+        jPanel1.add(jLabel8);
+        jLabel8.setBounds(130, 120, 60, 19);
+
+        jLabel10.setFont(new java.awt.Font("Arial Narrow", 1, 16)); // NOI18N
+        jLabel10.setText("Username");
+        jPanel1.add(jLabel10);
+        jLabel10.setBounds(130, 60, 84, 19);
+
+        jUser.setFont(new java.awt.Font("Arial Narrow", 1, 16)); // NOI18N
+        jUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jUserMouseClicked(evt);
+            }
+        });
+        jUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jUserActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jUser);
+        jUser.setBounds(130, 80, 160, 30);
+
+        jPass.setFont(new java.awt.Font("Arial Narrow", 1, 12)); // NOI18N
+        jPanel1.add(jPass);
+        jPass.setBounds(130, 140, 160, 30);
+
+        jButton1.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        jButton1.setText("Login");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(160, 190, 90, 40);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 483, Short.MAX_VALUE)
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        jPanel2.setBackground(new java.awt.Color(214, 181, 70));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 810, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 490));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUserMouseClicked
+        // TODO add your handling code here:
+//        jUser.setText(null);
+
+    }//GEN-LAST:event_jUserMouseClicked
+
+    private void jUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jUserActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String role = "Existing Admin";
+
+        try {
+            String myQuery = "SELECT * FROM users WHERE username=? and password=?";
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/sport_scheduler", "root", "");
+            pst = con.prepareStatement(myQuery);
+            pst.setString(1, jUser.getText());
+            pst.setString(2, jPass.getText());
+
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                if (rs.getString(7).equals(role)) {
+                    JOptionPane.showMessageDialog(null, "Username and Password Matched.");
+                    this.dispose();
+                    AdminPage aa = new AdminPage();
+//                    aa.usertype.setText(rs.getString(1));
+                    aa.setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Welcome Admin: " + rs.getString(2));
+                } else {
+                    JOptionPane.showMessageDialog(null, "It seems that your username, password don't matched or currently you are not approved by the admin.\nPlease Fill-in Correctly.", "Login Error!", JOptionPane.ERROR_MESSAGE);
+
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "It seems that your username, password don't matched or currently you are not approved by the admin.\nPlease Fill-in Correctly.", "Login Error!", JOptionPane.ERROR_MESSAGE);
+
+            }
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -91,31 +174,43 @@ public class LoginPage extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginPage.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginPage.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginPage.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginPage.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LoginPage().setVisible(true);
-              
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPasswordField jPass;
+    private javax.swing.JTextField jUser;
     // End of variables declaration//GEN-END:variables
-
 }
